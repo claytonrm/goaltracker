@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.2/knockout-min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+</head>
+
+<body onload="getGoals()">
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+        <a class="navbar-brand" href="#">GoalTracker</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+            aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+            <ul class="navbar-nav mr-auto">
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+        </div>
+    </nav>
+
+    <br/>
+    <br/>
+    <br/>
+
+    <main role="main" class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <input id="name" type="text" data-bind="value: goalInputName, valueUpdate: 'keypress'" class="form-control" placeholder="Enter Goal" />
+            </div>
+            <div class="col-md-3">
+                <select id="type" data-bind="value: goalInputType, options: types, optionsCaption: 'Choose Type'" class="form-control"></select>
+            </div>
+            <div class="col-md-3">
+                <input id="deadline" data-bind="value: goalInputDeadline" type="date" class="form-control" />
+            </div>
+            <div class="col-md-3">
+                <button class="btn btn-primary" data-bind="click: addGoal, enable: goalInputName, visible: !isUpdate()">Add Goal</button>
+                <button class="btn btn-primary" data-bind="click: updateGoal, enable: goalInputName, visible: isUpdate">Update Goal</button>
+                <button class="btn btn-info" data-bind="click: editSelected, enable: canEdit">Edit</button>
+                <button class="btn btn-danger" data-bind="click: deleteSelected, enable: canEdit" >Delete</button>
+            </div>
+        </div>
+        <br/><br/>
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Name</th>
+                            <th>Type</th>
+                            <th>Deadline</th>
+                        </tr>
+                    </thead>
+                    <tbody data-bind="foreach: goals">
+                        <tr>
+                            <td><input data-bind="value: $data, checked: $parent.selectedGoals" type="checkbox" /></td>
+                            <td data-bind="text: name"></td>
+                            <td data-bind="text: type"></td>
+                            <td data-bind="text: deadline"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </main><!-- /.container -->
+
+</body>
+
+<script src="app.js"></script>
+
+</html>
