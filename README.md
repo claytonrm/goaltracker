@@ -9,7 +9,7 @@ A Knockout (frontend) and NodeJS (backend) project example.
 ## Install
 
 - After download this project, on bash, inside the folter goaltrackar:
-* `npm install´
+* `npm install`
 
 ## Running
 
