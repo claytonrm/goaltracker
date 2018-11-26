@@ -1,4 +1,4 @@
-# goaltracker
+# Goal tracker
 
 A Knockout (frontend) and NodeJS (backend) project example.
 
